@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(void){
-	char  board [7][7];
+	char  board [8][8] = {0};
 	board [0][0] = 'r';
 	board [0][1] = 'n';
 	board [0][2] = 'b';
