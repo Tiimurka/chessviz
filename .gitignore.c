@@ -1,4 +1,4 @@
 *.[oa]
 *~
 *.exe
-/chessviz.exe
+chessviz.exe
