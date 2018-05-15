@@ -1,4 +1,7 @@
-all: chessviz
+all: bin/prog bin/test
+
+bin/prog: build/main.o build/board_initialization.o build/move.o build/decode.o build/output.o build/checking.o
+	gcc -Wall -Werror build/checking.o build/main.o build/board_initialization.o build/move.o build/decode.o build/output.o -o bin/prog
 
 build/main.o: src/main.c
 	gcc -Wall -Werror -c src/main.c -o build/main.o 
@@ -18,8 +21,14 @@ build/output.o: src/output.c
 build/checking.o: src/checking.c
 	gcc -Wall -Werror -c src/checking.c -o build/checking.o
 
-chessviz: build/checking.o build/board_initialization.o build/move.o build/output.o build/main.o build/decode.o
-	gcc -Wall build/checking.o build/board_initialization.o build/move.o build/main.o build/output.o build/decode.o -o chessviz
+bin/test: build/test.o build/checking.o build/board_initialization.o build/ctest.o build/move.o build/output.o
+	gcc -Wall build/test.o build/checking.o build/board_initialization.o build/ctest.o build/move.o build/output.o -o bin/test
+
+build/test.o: test/test.c
+	gcc -Wall -c test/test.c -o build/test.o -Ithirdparty -Isrc
+
+build/ctest.o: test/ctest.c
+	gcc -Wall -c test/ctest.c -o build/ctest.o -Ithirdparty
 
 .PHONY: clean
 clean:

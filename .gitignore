@@ -1,4 +1,2 @@
-*.[oa]
-*~
-*.exe
-/chessviz
+*.o
+clean
