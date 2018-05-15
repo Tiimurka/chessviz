@@ -1,2 +1,13 @@
+<<<<<<< HEAD
 *.o
 clean
+||||||| merged common ancestors
+*.[oa]
+*~
+*.exe
+/chessviz
+=======
+build/*.o
+*.exe
+
+>>>>>>> f6c8200293dd16a80e406fc1618c87428fc17d45
