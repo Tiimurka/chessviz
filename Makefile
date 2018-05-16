@@ -30,6 +30,9 @@ build/test.o: test/test.c
 build/ctest.o: test/ctest.c
 	gcc -Wall -c test/ctest.c -o build/ctest.o -Ithirdparty
 
+test: bin/test
+		bin/test
+
 .PHONY: clean
 clean:
 	rm -rf build/*.o
