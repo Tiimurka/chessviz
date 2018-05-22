@@ -57,6 +57,15 @@ CTEST(move_suite, move_slon) // Ход слона
 	//GIVEN
 	board * mass = (board *)malloc(sizeof(board)*8*8);
 	output(mass);
+	board * testsite = (board *)malloc(sizeof(board)*8*8);
+	testsite[1].tip = 'q';
+	testsite[1].color = 1;
+	testsite[8].tip = 'q';
+	testsite[8].color = 1;
+	testsite[9].tip = 'q';
+	testsite[9].color = 1;
+	testsite[0].tip = 's';
+	testsite[0].color = 1;
 	
 	//WHEN
 	move(mass, 0, 1, 1, 2); 	
@@ -71,6 +80,7 @@ CTEST(move_suite, move_slon) // Ход слона
 	int check5 = move_checking(mass, 4, 2, 6, 2); //Атака
 	move(mass, 2, 4, 2, 6);
 	int check6 = move_checking(mass, 6, 2, 4, 4); //Ход по диагонале 
+	int check7 = move_checking(testsite, 0, 0, 3, 3); // Фигуры на пути
 
 	//THEN
 	const int expected1 = 1;
@@ -79,6 +89,7 @@ CTEST(move_suite, move_slon) // Ход слона
 	const int expected4 = 1;
 	const int expected5 = 1;
 	const int expected6 = 0;
+	const int expected7 = 0;
 
 	ASSERT_EQUAL(expected1, check1);
 	ASSERT_EQUAL(expected2, check2);
@@ -86,6 +97,7 @@ CTEST(move_suite, move_slon) // Ход слона
 	ASSERT_EQUAL(expected4, check4);
 	ASSERT_EQUAL(expected5, check5);
 	ASSERT_EQUAL(expected6, check6);
+	ASSERT_EQUAL(expected7, check7);
 }
 CTEST(move_suite, move_hourse) // Ход коня
 {
@@ -123,6 +135,15 @@ CTEST(move_suite, move_ferz) // Ход ферзь
 	//GIVEN
 	board * mass = (board *)malloc(sizeof(board)*8*8);
 	output(mass);
+	board * testsite = (board *)malloc(sizeof(board)*8*8);
+	testsite[1].tip = 'q';
+	testsite[1].color = 1;
+	testsite[8].tip = 'q';
+	testsite[8].color = 1;
+	testsite[9].tip = 'q';
+	testsite[9].color = 1;
+	testsite[0].tip = 'f';
+	testsite[0].color = 1;
 	
 	//WHEN
 	move(mass, 1, 1, 1, 2);
@@ -134,6 +155,7 @@ CTEST(move_suite, move_ferz) // Ход ферзь
 	move(mass, 4, 6, 6, 4);
 	int check4 = move_checking(mass, 4, 6, 4, 4); //ложный ход
 	int check5 = move_checking(mass, 4, 6, 3, 6); //ложный ход
+	int check6 = move_checking(testsite, 0, 0, 0, 3); // Фигуры на пути
 	
 	//THEN
 	const int expected1 = 1;
@@ -141,18 +163,28 @@ CTEST(move_suite, move_ferz) // Ход ферзь
 	const int expected3 = 1;
 	const int expected4 = 0;
 	const int expected5 = 0;
+	const int expected6 = 0;
 
 	ASSERT_EQUAL(expected1, check1);
 	ASSERT_EQUAL(expected2, check2);
 	ASSERT_EQUAL(expected3, check3);
 	ASSERT_EQUAL(expected4, check4);
 	ASSERT_EQUAL(expected5, check5);
+	ASSERT_EQUAL(expected6, check6);
 }
 CTEST(move_suite, move_ladya) // Ход ладья
 {
 	//GIVEN
 	board * mass = (board *)malloc(sizeof(board)*8*8);
 	output(mass);
+	board * testsite = (board *)malloc(sizeof(board)*8*8);
+	testsite[1].tip = 'q';
+	testsite[1].color = 1;
+	testsite[8].tip = 'q';
+	testsite[8].color = 1;
+	testsite[0].tip = 'l';
+	testsite[0].color = 1;
+	
 	
 	//WHEN
 	move(mass, 4, 1, 4, 3);
@@ -166,6 +198,7 @@ CTEST(move_suite, move_ladya) // Ход ладья
 	move(mass, 7, 6, 6, 6);
 	int check5 = move_checking(mass, 6, 6, 6, 4); //проверка на ложный ход
 	move(mass, 6, 6, 4, 6);
+	int check6 = move_checking(testsite, 0, 0, 0, 4); //проверка на отсутствие фигур на пути
 	
 	//THEN
 	const int expected1 = 1;
@@ -173,12 +206,14 @@ CTEST(move_suite, move_ladya) // Ход ладья
 	const int expected3 = 1;
 	const int expected4 = 1;
 	const int expected5 = 0;
+	const int expected6 = 0;
 
 	ASSERT_EQUAL(expected1, check1);
 	ASSERT_EQUAL(expected2, check2);
 	ASSERT_EQUAL(expected3, check3);
 	ASSERT_EQUAL(expected4, check4);
 	ASSERT_EQUAL(expected5, check5);
+	ASSERT_EQUAL(expected6, check6);
 }
 CTEST(move_suite, move_king) // Ход король
 {
